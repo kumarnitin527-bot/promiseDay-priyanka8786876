@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Promise Day ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    text-align: center;
+    color: white;
+}
+
+/* Center Content */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+/* Heading Animation */
+h1 {
+    font-size: 3em;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px white; }
+    to { text-shadow: 0 0 30px red; }
+}
+
+/* Teddy Bear */
+.teddy {
+    width: 150px;
+    animation: dance 1s infinite alternate ease-in-out;
+}
+
+@keyframes dance {
+    0% { transform: rotate(-10deg) scale(1); }
+    100% { transform: rotate(10deg) scale(1.1); }
+}
+
+/* Button */
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    background: white;
+    color: #ff4b5c;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #ff4b5c;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+    <h1>Happy Promise Day ❤️</h1>
+    <p>I Promise to Always Stand by You, Love You & Support You Forever 💞</p>
+
+    <!-- Teddy Bear Image -->
+    <img src="https://i.imgur.com/6Xg8Z8D.png" class="teddy" alt="Teddy Bear">
+
+    <br>
+    <button onclick="playMusic()">Play Music 🎵</button>
+</div>
+
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+// Music Play
+function playMusic() {
+    document.getElementById("music").play();
+}
+
+// THREE JS 3D HEARTS
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({alpha:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+camera.position.z = 5;
+
+// Heart Shape
+function createHeartShape() {
+    const shape = new THREE.Shape();
+    shape.moveTo(0, 0);
+    shape.bezierCurveTo(0, 0, -1, -1, -2, 0);
+    shape.bezierCurveTo(-3, 1, -1, 3, 0, 4);
+    shape.bezierCurveTo(1, 3, 3, 1, 2, 0);
+    shape.bezierCurveTo(1, -1, 0, 0, 0, 0);
+    return shape;
+}
+
+const heartGeometry = new THREE.ExtrudeGeometry(createHeartShape(), {
+    depth: 0.5,
+    bevelEnabled: true,
+    bevelSegments: 2,
+    steps: 2,
+    bevelSize: 0.2,
+    bevelThickness: 0.2
+});
+
+const heartMaterial = new THREE.MeshStandardMaterial({color: 0xff4b5c});
+const hearts = [];
+
+for(let i=0; i<15; i++){
+    const heart = new THREE.Mesh(heartGeometry, heartMaterial);
+    heart.position.x = (Math.random() - 0.5) * 10;
+    heart.position.y = (Math.random() - 0.5) * 10;
+    heart.position.z = (Math.random() - 0.5) * 5;
+    scene.add(heart);
+    hearts.push(heart);
+}
+
+const light = new THREE.PointLight(0xffffff, 1);
+light.position.set(10,10,10);
+scene.add(light);
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    hearts.forEach(heart => {
+        heart.rotation.x += 0.01;
+        heart.rotation.y += 0.01;
+    });
+
+    renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+
+</body>
+</html>
