@@ -263,30 +263,41 @@ I found my forever when I found you 💖
 </audio>
 
 <script>
-const text="Dear Priyanka, you are my today and all my tomorrows...";
-let i=0;
-function typing(){
-    if(i<text.length){
-        document.getElementById("typeText").innerHTML+=text.charAt(i);
-        i++;
-        setTimeout(typing,90);
+
+// Typewriter
+document.addEventListener("DOMContentLoaded", function() {
+    const text = "Dear Priyanka, you are my today and all my tomorrows...";
+    let i = 0;
+
+    function typing(){
+        if(i < text.length){
+            document.getElementById("typeText").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typing, 90);
+        }
     }
-}
-typing();
+    typing();
+});
 
-window.onload = function(){
-    const music = document.getElementById("bgMusic");
-    music.play().catch(()=>{});
-}
-
+// Play music only on button click
 function showPromise(){
-    document.getElementById("promisePopup").style.display="flex";
-    document.getElementById("bgMusic").play();
+    const popup = document.getElementById("promisePopup");
+    const music = document.getElementById("bgMusic");
+
+    popup.style.display = "flex";
+
+    music.pause();
+    music.currentTime = 0;
+
+    music.play().catch(() => {
+        alert("Tap once on screen and click again if music doesn't start ❤️");
+    });
 }
 
 function closePromise(){
-    document.getElementById("promisePopup").style.display="none";
+    document.getElementById("promisePopup").style.display = "none";
 }
+
 </script>
 
 </body>
