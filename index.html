@@ -3,155 +3,290 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Promise Day ❤️</title>
+<title>For Priyanka ❤️</title>
 
 <style>
-body {
-    margin: 0;
-    overflow: hidden;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    text-align: center;
-    color: white;
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    text-align:center;
+    color:white;
+    background:url('background.jpg') no-repeat center center/cover;
 }
 
-/* Center Content */
-.content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(rgba(255,0,76,0.5),rgba(128,0,0,0.6));
+    z-index:-1;
 }
 
-/* Heading Animation */
-h1 {
-    font-size: 3em;
-    animation: glow 2s infinite alternate;
+/* 3D Glowing Name */
+.name3d{
+    font-size:60px;
+    margin-top:40px;
+    font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 20px #ff4d6d,
+        0 0 40px #ff1a40,
+        0 0 80px #ff0033;
+    animation:glow 2s infinite alternate;
 }
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px white; }
-    to { text-shadow: 0 0 30px red; }
+@keyframes glow{
+    from{transform:scale(1);}
+    to{transform:scale(1.08);}
 }
 
-/* Teddy Bear */
-.teddy {
-    width: 150px;
-    animation: dance 1s infinite alternate ease-in-out;
+/* Romantic Message */
+.love-msg{
+    font-size:21px;
+    max-width:750px;
+    margin:15px auto 25px;
+    line-height:1.7;
 }
 
-@keyframes dance {
-    0% { transform: rotate(-10deg) scale(1); }
-    100% { transform: rotate(10deg) scale(1.1); }
+.typewriter{
+    font-size:24px;
+    margin-top:10px;
+    border-right:3px solid white;
+    display:inline-block;
+    white-space:nowrap;
+    overflow:hidden;
 }
 
-/* Button */
-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    border: none;
-    border-radius: 20px;
-    background: white;
-    color: #ff4b5c;
-    cursor: pointer;
-    margin-top: 20px;
+/* Gallery */
+.gallery{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+    margin:40px 20px;
+    flex-wrap:wrap;
 }
 
-button:hover {
-    background: #ff4b5c;
-    color: white;
+.card{
+    width:210px;
+    height:270px;
+    perspective:1000px;
+}
+
+.card.center{
+    width:250px;
+    height:320px;
+}
+
+.card-inner{
+    width:100%;
+    height:100%;
+    position:relative;
+    transform-style:preserve-3d;
+    transition:transform 0.8s;
+}
+
+.card:hover .card-inner{
+    transform:rotateY(180deg);
+}
+
+.card-front,.card-back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    backface-visibility:hidden;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.card-front img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.card-back{
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(8px);
+    transform:rotateY(180deg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+    font-size:16px;
+}
+
+/* Buttons */
+button{
+    padding:14px 28px;
+    margin:15px;
+    border:none;
+    border-radius:30px;
+    font-size:17px;
+    cursor:pointer;
+    background:white;
+    color:#e60039;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#e60039;
+    color:white;
+}
+
+/* POPUP */
+.popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    backdrop-filter:blur(6px);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.popup-box{
+    position:relative;
+    background:linear-gradient(135deg,#ff4d6d,#ff758c);
+    padding:35px;
+    width:90%;
+    max-width:480px;
+    border-radius:25px;
+    color:white;
+    transform:perspective(1000px) rotateX(15deg) scale(0.8);
+    animation:popupAnim 0.6s forwards;
+    box-shadow:0 25px 50px rgba(0,0,0,0.5);
+}
+
+@keyframes popupAnim{
+    to{
+        transform:perspective(1000px) rotateX(0deg) scale(1);
+    }
+}
+
+.close-btn{
+    position:absolute;
+    right:15px;
+    top:10px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+@media(max-width:768px){
+    .name3d{font-size:42px;}
+    .gallery{flex-direction:column;}
 }
 </style>
 </head>
 
 <body>
 
-<div class="content">
-    <h1>Happy Promise Day ❤️</h1>
-    <p>I Promise to Always Stand by You, Love You & Support You Forever 💞</p>
+<div class="name3d">PRIYANKA ❤️</div>
 
-    <!-- Teddy Bear Image -->
-    <img src="https://i.imgur.com/6Xg8Z8D.png" class="teddy" alt="Teddy Bear">
-
-    <br>
-    <button onclick="playMusic()">Play Music 🎵</button>
+<div class="love-msg">
+Priyanka, loving you is not just a feeling,
+it is the most beautiful part of my life.
+You are my peace, my happiness,
+and the reason behind my genuine smiles.
+Every moment with you feels magical,
+and every day with you feels like a blessing. ❤️✨
 </div>
 
-<audio id="music" loop>
-    <source src="music.mp3" type="audio/mp3">
+<div class="typewriter" id="typeText"></div>
+
+<div class="gallery">
+
+<div class="card">
+<div class="card-inner">
+<div class="card-front">
+<img src="photo1.jpeg">
+</div>
+<div class="card-back">
+Your smile is my favorite view in this world ❤️
+</div>
+</div>
+</div>
+
+<div class="card center">
+<div class="card-inner">
+<div class="card-front">
+<img src="photo2.jpeg">
+</div>
+<div class="card-back">
+With you, ordinary moments become unforgettable 💕
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-inner">
+<div class="card-front">
+<img src="photo3.jpeg">
+</div>
+<div class="card-back">
+I found my forever when I found you 💖
+</div>
+</div>
+</div>
+
+</div>
+
+<button onclick="showPromise()">Click My Love Promise 💌</button>
+
+<div class="popup" id="promisePopup">
+  <div class="popup-box">
+    <span class="close-btn" onclick="closePromise()">❌</span>
+    <h2>My Promise To You ❤️</h2>
+    <p>
+      Priyanka, I promise to love you with honesty,
+      to respect you with sincerity,
+      to stand beside you in every phase of life,
+      and to never let you feel alone.
+      I promise to choose you,
+      today, tomorrow, and always.
+      You are my heart, my love, my forever. ❤️
+    </p>
+  </div>
+</div>
+
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mp3">
 </audio>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
 <script>
-// Music Play
-function playMusic() {
-    document.getElementById("music").play();
+const text="Dear Priyanka, you are my today and all my tomorrows...";
+let i=0;
+function typing(){
+    if(i<text.length){
+        document.getElementById("typeText").innerHTML+=text.charAt(i);
+        i++;
+        setTimeout(typing,90);
+    }
+}
+typing();
+
+window.onload = function(){
+    const music = document.getElementById("bgMusic");
+    music.play().catch(()=>{});
 }
 
-// THREE JS 3D HEARTS
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({alpha:true});
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
-
-camera.position.z = 5;
-
-// Heart Shape
-function createHeartShape() {
-    const shape = new THREE.Shape();
-    shape.moveTo(0, 0);
-    shape.bezierCurveTo(0, 0, -1, -1, -2, 0);
-    shape.bezierCurveTo(-3, 1, -1, 3, 0, 4);
-    shape.bezierCurveTo(1, 3, 3, 1, 2, 0);
-    shape.bezierCurveTo(1, -1, 0, 0, 0, 0);
-    return shape;
+function showPromise(){
+    document.getElementById("promisePopup").style.display="flex";
+    document.getElementById("bgMusic").play();
 }
 
-const heartGeometry = new THREE.ExtrudeGeometry(createHeartShape(), {
-    depth: 0.5,
-    bevelEnabled: true,
-    bevelSegments: 2,
-    steps: 2,
-    bevelSize: 0.2,
-    bevelThickness: 0.2
-});
-
-const heartMaterial = new THREE.MeshStandardMaterial({color: 0xff4b5c});
-const hearts = [];
-
-for(let i=0; i<15; i++){
-    const heart = new THREE.Mesh(heartGeometry, heartMaterial);
-    heart.position.x = (Math.random() - 0.5) * 10;
-    heart.position.y = (Math.random() - 0.5) * 10;
-    heart.position.z = (Math.random() - 0.5) * 5;
-    scene.add(heart);
-    hearts.push(heart);
+function closePromise(){
+    document.getElementById("promisePopup").style.display="none";
 }
-
-const light = new THREE.PointLight(0xffffff, 1);
-light.position.set(10,10,10);
-scene.add(light);
-
-function animate() {
-    requestAnimationFrame(animate);
-
-    hearts.forEach(heart => {
-        heart.rotation.x += 0.01;
-        heart.rotation.y += 0.01;
-    });
-
-    renderer.render(scene, camera);
-}
-animate();
-
-window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth/window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-});
 </script>
 
 </body>
